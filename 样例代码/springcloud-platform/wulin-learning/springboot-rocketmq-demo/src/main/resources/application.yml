@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: boot-rocketmq-demo
+
+rocketmq:
+  name-server: 10.158.1.158:9876
+  producer:
+    #生产者组名，规定在一个应用里面必须时唯一的。
+    group: ${spring.application.name}
+    #消息发送的超时时间，毫米级别，默认为3S
+    send-message-timeout: 3000
+    #消息达到4096字节的时候，消息就会被压缩。默认就是4096，有利于网络传输，提升性能。
+    compress-message-body-threshold: 4096
+    #最大的消息限制 默认为128K
+    max-message-size: 4194304
+    #同步消息发送失败重试次数
+    retry-times-when-send-failed: 3
+    #在内部发送失败时是否重试其他代理。 源码：setRetryAnotherBrokerWhenNotStoreOK，就是指：发送到broker-a失败是否发送到broker-b。这个参数在有多个broker才生效。
+    retry-next-server: true
+    #异步消息发送失败重试的次数
+    retry-times-when-send-async-failed: 3
+

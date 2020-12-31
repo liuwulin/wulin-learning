@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.wulin</groupId>
+        <artifactId>central-platform</artifactId>
+        <version>3.1.0</version>
+    </parent>
+    <artifactId>wulin-demo</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <!-- txlcn分布式事务demo -->
+        <module>txlcn-demo</module>
+        <!-- sharding-jdbc分库分表demo -->
+        <module>sharding-jdbc-demo</module>
+        <!-- rocketmq消息队列demo -->
+        <module>rocketmq-demo</module>
+        <!-- seata分布式事务demo -->
+        <module>seata-demo</module>
+    </modules>
+</project>

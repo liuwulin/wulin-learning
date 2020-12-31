@@ -1,0 +1,13 @@
+server:
+  port: 8877
+
+security:
+  oauth2:
+    ressource:
+      tokenInfoUrl: http://localhost:8000/oauth/check_token
+      perferTokenInfo: true
+    client:
+      accessTokenUrl: http://localhost:8000/oauth/token
+      userAuthorizationUrl: http://localhost:8000/oauth/authorize
+      clientId: client_1
+      clientSecret: 123456

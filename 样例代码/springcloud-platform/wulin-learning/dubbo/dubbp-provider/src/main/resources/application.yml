@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: sentinel-provider
+server:
+  port: 8081
+
+dubbo:
+  application:
+    id: demo-provider
+    name: demo-provider
+    version: 1.0.0
+    qos-enable: false
+#开启包扫描，可替代 @EnableDubbo 注解
+  scan:
+    basePackages: com.dubbo.demo
+  protocol:
+    name: dubbo
+    port: 21880
+  registry:
+    id: registry
+    address: 120.24.72.198:2181
+    protocol: zookeeper
+
+
+

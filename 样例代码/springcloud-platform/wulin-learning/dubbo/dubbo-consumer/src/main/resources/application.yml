@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: sentinel-consumer
+server:
+  port: 8082
+
+
+dubbo:
+  application:
+    id: demo-consumer
+    name: demo-consumer
+    version: 1.0.0
+    qos-enable: false
+#  scan:
+#    basePackages: com.dubbo.demo
+#  protocol:
+#    name: dubbo
+#    port: 21880
+  registry:
+    id: registry
+    address: 120.24.72.198:2181
+    protocol: zookeeper
+  #关闭所有服务的启动时检查：(没有提供者时报错)
+  consumer:
+    check: false
+    timeout: 3000
+
+
+
