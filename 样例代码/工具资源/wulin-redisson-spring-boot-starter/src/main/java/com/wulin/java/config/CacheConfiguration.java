@@ -1,5 +1,21 @@
 package com.wulin.java.config;
 
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author 武林
  * @date 2021/1/4 18:10
@@ -19,7 +35,6 @@ public class CacheConfiguration {
         /**
          * 单机模式 redisson 客户端
          */
-
         @Bean
         @ConditionalOnProperty(name = "spring.redis.mode", havingValue = "single")
         RedissonClient redissonSingle() {
@@ -31,7 +46,7 @@ public class CacheConfiguration {
                     .setTimeout(redisProperties.getPool().getConnTimeout())
                     .setConnectionPoolSize(redisProperties.getPool().getSize())
                     .setConnectionMinimumIdleSize(redisProperties.getPool().getMinIdle());
-            if (StringUtils.isNotBlank(redisProperties.getPassword())) {
+            if (redisProperties.getPassword() != null && !redisProperties.getPassword().isEmpty()) {
                 serverConfig.setPassword(redisProperties.getPassword());
             }
             return Redisson.create(config);
@@ -73,7 +88,7 @@ public class CacheConfiguration {
                     .setSlaveConnectionPoolSize(redisProperties.getCluster()
                             .getSlaveConnectionPoolSize())
                     .setTimeout(redisProperties.getTimeout());
-            if (StringUtils.isNotBlank(redisProperties.getPassword())) {
+            if (redisProperties.getPassword() != null && !redisProperties.getPassword().isEmpty()) {
                 serverConfig.setPassword(redisProperties.getPassword());
             }
             return Redisson.create(config);
@@ -103,7 +118,7 @@ public class CacheConfiguration {
                     .setMasterConnectionPoolSize(redisProperties.getPool().getSize())
                     .setSlaveConnectionPoolSize(redisProperties.getPool().getSize());
 
-            if (StringUtils.isNotBlank(redisProperties.getPassword())) {
+            if (redisProperties.getPassword() != null && !redisProperties.getPassword().isEmpty()) {
                 serverConfig.setPassword(redisProperties.getPassword());
             }
 
